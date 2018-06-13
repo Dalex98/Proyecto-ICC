@@ -1,41 +1,60 @@
 import random
 
-mesas=('Mesa 1','Mesa 2','Mesa 3','Mesa 4','Mesa 5','Mesa 6')
-rel=[]
+##############Definiendo el numero de mesas de escrutinio#############
 
-for i in mesas:
-    n=int(input('Numero de votantes:'))
+n=int(input("Ingrese el numero de mesas disponibles "))
+
+MESAS=[]
+for i in range(n):
+    MESAS.append("Mesa n° "+str(i+1) )
+
+relacion=[] ### lista de mesas y sus respectivas cantidad de votantes ###
+EVXM=[] ### lista final de edades de votantes por cada mesa ####
+
+for i in MESAS:
+    n=int(input("Numero de votantes de la " + str(i)+" "))
     x=[]
     x.append(i)
     x.append(n)
     tuple(x)
-    rel.append(x)
-print(rel)
-print(x)
-########################################
-def lista_de_candidatos_por_mesa(rel):
-    vxm=[]
-    for i in range (len(rel)):
-        vxm.append((rel[i][1]))
+    relacion.append(x)
+
+print(relacion)
+
+############# función generadora de lista exclusiva de cantidad de votantes por mesa ##########
+
+def lista_de_votantes_por_mesa(relacion):
+    vxm=[] ########### lista de cantidad de votantes por mesa#####
+
+    for i in range (len(relacion)):
+        vxm.append((relacion[i][1]))
     return vxm
 
-vxm=lista_de_candidatos_por_mesa(rel)
+vxm=lista_de_votantes_por_mesa(relacion)
 
-def edad_votantes (vxm):
+def generador_edad_votantes (vxm):
     votantes=[]
-
     for i in range(len(vxm)):
 
         for j in range(vxm[i]):
             votantes.append(random.randrange(18,90))
 
-    V1=votantes[0:vxm[0]]
-    V2=votantes[vxm[0]:vxm[0]+vxm[1]]
-    V3=votantes[vxm[0]+vxm[1]:vxm[0]+vxm[1]+vxm[2]]
-    V4=votantes[vxm[0]+vxm[1]+vxm[2]:vxm[0]+vxm[1]+vxm[2]+vxm[3]]
-    V5=votantes[vxm[0]+vxm[1]+vxm[2]+vxm[3]:vxm[0]+vxm[1]+vxm[2]+vxm[3]+vxm[4]]
-    V6=votantes[vxm[0]+vxm[1]+vxm[2]+vxm[3]+vxm[4]:vxm[0]+vxm[1]+vxm[2]+vxm[3]+vxm[4]+vxm[5]]
+    return votantes
 
-    return (V1,V2,V3,V4,V5,V6)
+lev= generador_edad_votantes(vxm) ###lev es la lista combinada de todas las edades generadas####
 
-LEV= edad_votantes(vxm)
+############función de subdivisión de "lev" a lista de edades de votantes por mesa########
+
+def listas_individuales(vxm,lev,i):
+    lindv=[]
+    for j in range(vxm[i]):
+            x=lev.pop()
+            lindv.append(x)
+    return lindv
+
+for i in range (len(vxm)):
+    lindv=listas_individuales(vxm,lev,i)
+    EVXM.append(lindv)
+    
+    
+print(EVXM)
