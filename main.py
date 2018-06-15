@@ -28,6 +28,7 @@ def menu():
 ## Funcion principal que llamara cada requerimiento ##
 def main():
     #cargarPrograma()
+    #otro comentario
     op = menu()
     if op == '1':
         print("LLamar funcion principal que registra candidatos")
