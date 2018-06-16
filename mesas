@@ -1,54 +1,21 @@
 import random
-
-def lista_de_votantes_por_mesa(relacion):
-    vxm=[]
-
-    for i in range (len(relacion)):
-        vxm.append((relacion[i][1]))
-    return vxm
-
-def generador_edad_votantes (vxm):
-    votantes=[]
-    for i in range(len(vxm)):
-
-        for j in range(vxm[i]):
-            votantes.append(random.randrange(18,90))
-
+def generador_edad_votantes (mesas):
+    votantes={}
+    lis=list(mesas.values())
+    m=0
+    for i in lis:
+        edades=[]
+        m=m+1
+        for j in range (i):
+            x=random.randint(18,90)
+            edades.append(x)
+        votantes.update({'Mesa n°'+str(m):edades})
     return votantes
-
-def listas_individuales(vxm,lev,i):
-    lindv=[]
-    for j in range(vxm[i]):
-            x=lev.pop()
-            lindv.append(x)
-    return lindv
-
-n=int(input("Ingrese el numero de mesas disponibles "))
-
-MESAS=[]
+MESAS={}
+n=int(input("Ingrese el numero de mesas disponibles:"))
 for i in range(n):
-    MESAS.append("Mesa n° "+str(i+1) )
-
-relacion=[]
-EVXM=[]
-
-for i in MESAS:
-    n=int(input("Numero de votantes de la " + str(i)+" "))
-    x=[]
-    x.append(i)
-    x.append(n)
-    tuple(x)
-    relacion.append(x)
-
-print(relacion)
-
-vxm=lista_de_votantes_por_mesa(relacion)
-
-
-lev= generador_edad_votantes(vxm)
-
-for i in range (len(vxm)):
-    lindv=listas_individuales(vxm,lev,i)
-    EVXM.append(lindv)
-
-print(EVXM)
+    nv=int(input("Numero de votantes mesa n°"+str(i+1)+":"))
+    MESAS.update({'Mesa n°'+str(i+1):nv})
+edades= generador_edad_votantes(MESAS)
+print("Mesas y cantidad de votantes:",MESAS)
+print("Mesas y la edad de votantes:",edades)
