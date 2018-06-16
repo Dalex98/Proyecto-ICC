@@ -1,6 +1,27 @@
 import random
 
-##############Definiendo el numero de mesas de escrutinio#############
+def lista_de_votantes_por_mesa(relacion):
+    vxm=[]
+
+    for i in range (len(relacion)):
+        vxm.append((relacion[i][1]))
+    return vxm
+
+def generador_edad_votantes (vxm):
+    votantes=[]
+    for i in range(len(vxm)):
+
+        for j in range(vxm[i]):
+            votantes.append(random.randrange(18,90))
+
+    return votantes
+
+def listas_individuales(vxm,lev,i):
+    lindv=[]
+    for j in range(vxm[i]):
+            x=lev.pop()
+            lindv.append(x)
+    return lindv
 
 n=int(input("Ingrese el numero de mesas disponibles "))
 
@@ -8,8 +29,8 @@ MESAS=[]
 for i in range(n):
     MESAS.append("Mesa n° "+str(i+1) )
 
-relacion=[] ### lista de mesas y sus respectivas cantidad de votantes ###
-EVXM=[] ### lista final de edades de votantes por cada mesa ####
+relacion=[]
+EVXM=[]
 
 for i in MESAS:
     n=int(input("Numero de votantes de la " + str(i)+" "))
@@ -21,40 +42,13 @@ for i in MESAS:
 
 print(relacion)
 
-############# función generadora de lista exclusiva de cantidad de votantes por mesa ##########
-
-def lista_de_votantes_por_mesa(relacion):
-    vxm=[] ########### lista de cantidad de votantes por mesa#####
-
-    for i in range (len(relacion)):
-        vxm.append((relacion[i][1]))
-    return vxm
-
 vxm=lista_de_votantes_por_mesa(relacion)
 
-def generador_edad_votantes (vxm):
-    votantes=[]
-    for i in range(len(vxm)):
 
-        for j in range(vxm[i]):
-            votantes.append(random.randrange(18,90))
-
-    return votantes
-
-lev= generador_edad_votantes(vxm) ###lev es la lista combinada de todas las edades generadas####
-
-############función de subdivisión de "lev" a lista de edades de votantes por mesa########
-
-def listas_individuales(vxm,lev,i):
-    lindv=[]
-    for j in range(vxm[i]):
-            x=lev.pop()
-            lindv.append(x)
-    return lindv
+lev= generador_edad_votantes(vxm)
 
 for i in range (len(vxm)):
     lindv=listas_individuales(vxm,lev,i)
     EVXM.append(lindv)
-    
-    
+
 print(EVXM)
