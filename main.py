@@ -1,7 +1,7 @@
 from screen import *
-from candidatos import *
-from mesas import *
-from simulacion import *
+from candidatos
+from mesas2
+from simulacion
 from escrutinio import *
 from estadisticas import *
 
