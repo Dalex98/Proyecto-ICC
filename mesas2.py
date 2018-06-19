@@ -8,7 +8,7 @@ def edades(n):
 
 def hormiguero(lista):
     mesas = {'Mesa n°1':[],'Mesa n°2':[],'Mesa n°3':[],'Mesa n°4':[],'Mesa n°5':[],'Mesa n°6':[],'Mesa Preferencial':[]}
-    counter=len(lista)//8
+    counter=len(lista)//20
     while counter>0:
         manco=random.randint(0,len(lista))
         key = 'Mesa Preferencial'
@@ -16,11 +16,10 @@ def hormiguero(lista):
         mesas[key].append(lista[manco])
         counter=counter-1
         del lista[manco]
-
     for i in lista:
         x=random.randint(1,6)
         key='Mesa n°'+str(x)
-        mesas.setdefault(key,[ ])
+        mesas.setdefault(key,[])
         mesas[key].append(i)
     return mesas
 
@@ -28,4 +27,4 @@ votantes=int(input("Numero de votantes:"))
 
 edades=edades(votantes)
 
-print(hormiguero(edades))
+hormiguero(edades)

@@ -1,9 +1,19 @@
 import mesas2
 import candidatos
 
-candidatos=candidatos.Numcandidatos()
-mesas=mesas2.votantes()
+edades=mesas2.edades
+votantes=mesas2.hormiguero(edades)
+postulantes=candidatos.candidatos
 
-print(mesas)
-print(partidos)
+def escogervoto(votantes):
+    counter=len(votantes)-1
+    while counter>0:
+        for i in votantes:
+            key='Mesa n°'+str(counter)
+            votan=votantes[key]
+        print(votan)
 
+        counter=counter-1
+
+escogervoto(votantes)
+print(votantes)
