@@ -12,8 +12,11 @@ def escogervoto(votantes):
             key='Mesa n°'+str(counter)
             votan=votantes[key]
         print(votan)
-
         counter=counter-1
+    keypref = 'Mesa Preferencial'
+    votanpref = votantes[keypref]
+    print(votanpref)
 
 escogervoto(votantes)
 print(votantes)
+print(postulantes)
