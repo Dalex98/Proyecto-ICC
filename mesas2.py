@@ -1,8 +1,8 @@
 import random
-def edades(n):
+def edades(votantes):
     edades = []
-    menores=round(n*0.9)
-    viejitos=n-menores
+    menores=round(votantes*0.9)
+    viejitos=votantes-menores
     for i in range(menores):
         x = random.randint(18, 64)
         edades.append(x)
@@ -39,5 +39,5 @@ votantes=int(input("Numero de votantes:"))
 mesas=hormiguero(edades(votantes))
 
 #for i in mesas:
-#    print(i,":",mesas[i])
-#    print(len(mesas[i]))
+#   print(i,":",mesas[i])
+#   print(len(mesas[i]))

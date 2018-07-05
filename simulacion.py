@@ -1,13 +1,20 @@
 import mesas2
 import candidatos
 import random
-import time
 
 def voto(personas):
+    duracion=0
+    for i in personas['Mesa Preferencial']:
+        escoger()
     for i in personas:
+        print("Esta mesa voto",i)
         for e in personas[i]:
             escoger()
-            tiempo(e)
+            t=tiempo(e)
+            duracion=duracion+t
+        if duracion>=80:
+            return True
+    return True
 
 def escoger():
     llaves=[]
@@ -20,15 +27,27 @@ def escoger():
 
 def tiempo(e):
     if e>=18 and e<=35:
-        t=0
+        t=2
         a.append(e)
     elif e>=36 and e<=55:
-        t=0
+        t=4
         b.append(e)
     else:
-        t=0
+        t=6
         c.append(e)
-    time.sleep(t)
+    return t
+
+def estadistcas():
+    votosemitidos = len(a) + len(b) + len(c) + len(votantes['Mesa Preferencial'])
+    jovenes = (len(a) / votosemitidos) * 100
+    mediaedad = (len(b) / votosemitidos) * 100
+    avanzados = (len(c) / votosemitidos) * 100
+    preferenciales = (int(len(votantes['Mesa Preferencial'])) / votosemitidos) * 100
+    print(postulantes)
+    print("Porcentaje de votantes entre 18 y 35 años:", jovenes, "%")
+    print("Porcentaje de votantes entre 36 y 55 años:", mediaedad, "%")
+    print("Porcentaje de votantes mayores a 55 años:", avanzados, "%")
+    print("Porcentaje de votantes preferenciales:", preferenciales, "%")
 
 votantes=mesas2.mesas
 postulantes=candidatos.candidatos
@@ -43,17 +62,10 @@ for i in votantes:
     print(len(votantes[i]))
 
 
-voto(votantes)
+duracion=voto(votantes)
 
-print(postulantes)
+if duracion==True:
+    estadistcas()
 
-votosemitidos = len(a) + len(b) + len(c)
-jovenes = (len(a) / votosemitidos) * 100
-mediaedad = (len(b) / votosemitidos) * 100
-avanzados = (len(c) / votosemitidos) * 100
-preferenciales = (int(len(votantes['Mesa Preferencial'])) / votosemitidos) * 100
 
-print("Porcentaje de votantes entre 18 y 35 años:",jovenes,"%")
-print("Porcentaje de votantes entre 36 y 55 años:",mediaedad,"%")
-print("Porcentaje de votantes mayores a 55 años:",avanzados,"%")
-print("Porcentaje de votantes preferenciales:",preferenciales,"%")
+print(duracion)
