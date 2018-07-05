@@ -8,10 +8,6 @@ def voto(personas):
         for e in personas[i]:
             escoger()
             tiempo(e)
-    for e in personas['Mesa Preferencial']:
-        escoger()
-        pre.append(e)
-        time.sleep(1)
 
 def escoger():
     llaves=[]
@@ -24,13 +20,13 @@ def escoger():
 
 def tiempo(e):
     if e>=18 and e<=35:
-        t=1
+        t=0
         a.append(e)
     elif e>=36 and e<=55:
-        t=1
+        t=0
         b.append(e)
     else:
-        t=1
+        t=0
         c.append(e)
     time.sleep(t)
 
@@ -51,11 +47,11 @@ voto(votantes)
 
 print(postulantes)
 
-votosemitidos = len(a) + len(b) + len(c) + len(pre)
+votosemitidos = len(a) + len(b) + len(c)
 jovenes = (len(a) / votosemitidos) * 100
 mediaedad = (len(b) / votosemitidos) * 100
 avanzados = (len(c) / votosemitidos) * 100
-preferenciales = (len(pre) / votosemitidos) * 100
+preferenciales = (int(len(votantes['Mesa Preferencial'])) / votosemitidos) * 100
 
 print("Porcentaje de votantes entre 18 y 35 años:",jovenes,"%")
 print("Porcentaje de votantes entre 36 y 55 años:",mediaedad,"%")
