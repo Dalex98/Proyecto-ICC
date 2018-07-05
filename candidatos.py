@@ -1,7 +1,5 @@
 candidatos={}
-
 postulantes=int(input("Numero de candidatos:"))
-
 for i in range(postulantes):
     info = []
     nombre = (input("Nombre del Postulante:"))
@@ -12,7 +10,5 @@ for i in range(postulantes):
     info.append(muni)
     info.append(puntos)
     candidatos.update({nombre:info})
-
 candidatos
-
 #print(candidatos)
