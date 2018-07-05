@@ -25,6 +25,11 @@ def hormiguero(lista):
 
 votantes=int(input("Numero de votantes:"))
 
-edades=edades(votantes)
 
-hormiguero(edades)
+mesas=hormiguero(edades(votantes))
+
+#x=hormiguero(edades)
+#for i in x:
+#    key=i
+#    print(i,":",x[i])
+#    print(len(x[i]))
