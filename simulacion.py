@@ -1,17 +1,17 @@
 import mesas2
 import candidatos
 import random
+import time
 def voto(personas):
     duracion=0
     for i in personas['Mesa Preferencial']:
         escoger()
     for i in personas:
-#        print("Esta mesa voto",i)
         for e in personas[i]:
             escoger()
             t=tiempo(e)
             duracion=duracion+t
-        if duracion>=320:
+        if duracion>=100:
             return True
     return True
 def escoger():
@@ -39,11 +39,15 @@ def estadistcas():
     mediaedad = (len(b) / votosemitidos) * 100
     avanzados = (len(c) / votosemitidos) * 100
     preferenciales = (int(len(votantes['Mesa Preferencial'])) / votosemitidos) * 100
+    todos=0
     print(postulantes)
-    print("Porcentaje de votantes entre 18 y 35 años:", jovenes, "%")
-    print("Porcentaje de votantes entre 36 y 55 años:", mediaedad, "%")
-    print("Porcentaje de votantes mayores a 55 años:", avanzados, "%")
-    print("Porcentaje de votantes preferenciales:", preferenciales, "%")
+    print("Porcentaje de votos emitidos por personas entre 18 y 35 años:", jovenes, "%")
+    print("Porcentaje de votos emitidos por personas entre 36 y 55 años:", mediaedad, "%")
+    print("Porcentaje de votos emitidos por personas mayores a 55 años:", avanzados, "%")
+    print("Porcentaje de votos emitidos por personas preferenciales:", preferenciales, "%")
+    for i in votantes:
+        todos=todos+len(votantes[i])
+    print("Porcentaje de votantes que no ejercieron su derecho al voto:",((todos-votosemitidos)/todos)*100,"%")
 votantes=mesas2.mesas
 postulantes=candidatos.candidatos
 a=[]
@@ -55,4 +59,5 @@ for i in votantes:
     print(len(votantes[i]))
 duracion=voto(votantes)
 if duracion==True:
+    time.sleep(5)
     estadistcas()
