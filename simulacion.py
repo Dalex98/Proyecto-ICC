@@ -6,12 +6,12 @@ def voto(personas):
     for i in personas['Mesa Preferencial']:
         escoger()
     for i in personas:
-        print("Esta mesa voto",i)
+#        print("Esta mesa voto",i)
         for e in personas[i]:
             escoger()
             t=tiempo(e)
             duracion=duracion+t
-        if duracion>=80:
+        if duracion>=320:
             return True
     return True
 def escoger():
@@ -56,4 +56,3 @@ for i in votantes:
 duracion=voto(votantes)
 if duracion==True:
     estadistcas()
-print(duracion)

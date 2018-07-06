@@ -1,7 +1,7 @@
 import random
 def edades(votantes):
     edades = []
-    menores=round(votantes*0.9)
+    menores=round(votantes*0.95)
     viejitos=votantes-menores
     for i in range(menores):
         x = random.randint(18, 64)
